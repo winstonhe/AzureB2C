@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TrustFrameworkPolicy 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
+  PolicySchemaVersion="0.3.0.0" 
+  TenantId="newdreamtestb2c.onmicrosoft.com" 
+  PolicyId="B2C_1A_Winston_TrustFrameworkExtensions" 
+  PublicPolicyUri="http://newdreamtestb2c.onmicrosoft.com/B2C_1A_Winston_TrustFrameworkExtensions">
+  
+  <BasePolicy>
+    <TenantId>newdreamtestb2c.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_Winston_TrustFrameworkLocalization</PolicyId>
+  </BasePolicy>
+  <BuildingBlocks>
+
+  </BuildingBlocks>
+
+  <ClaimsProviders>
+
+
+    <ClaimsProvider>
+      <DisplayName>Token Issuer</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="JwtIssuer">
+          <Metadata>
+            <Item Key="token_lifetime_secs">3600</Item>
+            <Item Key="id_token_lifetime_secs">3600</Item>
+            <Item Key="refresh_token_lifetime_secs">1209600</Item>
+            <Item Key="rolling_refresh_token_lifetime_secs">7776000</Item>
+            <Item Key="allow_infinite_rolling_refresh_token">true</Item>
+            <!-- Another option is AuthorityAndTenantGuid, please use AuthorityWithTfp in this example -->
+            <Item Key="IssuanceClaimPattern">AuthorityWithTfp</Item>
+            <Item Key="AuthenticationContextReferenceClaimPattern">None</Item>
+          </Metadata>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+
+    <ClaimsProvider>
+      <DisplayName>Local Account SignIn</DisplayName>
+      <TechnicalProfiles>
+         <TechnicalProfile Id="login-NonInteractive">
+          <Metadata>
+            <Item Key="client_id">77968482-0122-4d47-aa36-37295eb82245</Item>
+            <Item Key="IdTokenAudience">c09c855f-10ca-4801-ac68-eae330b12195</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="77968482-0122-4d47-aa36-37295eb82245" />
+            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="c09c855f-10ca-4801-ac68-eae330b12195" />
+          </InputClaims>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+
+  </ClaimsProviders>
+
+    <!--UserJourneys>
+	
+	</UserJourneys-->
+
+</TrustFrameworkPolicy>
